@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@500;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* RC Drift Cars — Drift Brand Design System
+   Dark cinematic theme with electric neon accents.
+   All colors HSL.
+*/
+
+@layer base {
+  :root {
+    /* Core surfaces */
+    --background: 230 20% 4%;
+    --foreground: 210 40% 98%;
+
+    --card: 230 18% 7%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 230 18% 7%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Brand: electric blue */
+    --primary: 200 100% 55%;
+    --primary-foreground: 230 25% 5%;
+    --primary-glow: 195 100% 65%;
+
+    /* Secondary: charcoal glass */
+    --secondary: 230 15% 12%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 230 12% 14%;
+    --muted-foreground: 220 10% 65%;
+
+    /* Accent: neon purple */
+    --accent: 280 90% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Danger / drift red */
+    --destructive: 354 90% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 230 15% 16%;
+    --input: 230 15% 14%;
+    --ring: 200 100% 55%;
+
+    --radius: 0.875rem;
+
+    /* Custom brand tokens */
+    --neon-blue: 200 100% 55%;
+    --neon-purple: 280 90% 60%;
+    --neon-red: 354 90% 55%;
+    --neon-cyan: 185 100% 60%;
+
+    /* Gradients */
+    --gradient-hero: radial-gradient(ellipse at 20% 30%, hsl(280 90% 30% / 0.45), transparent 55%),
+                      radial-gradient(ellipse at 80% 60%, hsl(200 100% 40% / 0.4), transparent 60%),
+                      linear-gradient(180deg, hsl(230 25% 4%), hsl(230 30% 2%));
+    --gradient-brand: linear-gradient(135deg, hsl(var(--neon-blue)) 0%, hsl(var(--neon-purple)) 100%);
+    --gradient-fire: linear-gradient(135deg, hsl(var(--neon-red)) 0%, hsl(var(--neon-purple)) 100%);
+    --gradient-card: linear-gradient(160deg, hsl(230 18% 9% / 0.8) 0%, hsl(230 25% 5% / 0.9) 100%);
+    --gradient-glow: radial-gradient(circle at center, hsl(var(--neon-blue) / 0.5), transparent 70%);
+
+    /* Shadows / glows */
+    --shadow-neon: 0 0 40px hsl(var(--neon-blue) / 0.45), 0 0 80px hsl(var(--neon-blue) / 0.2);
+    --shadow-neon-purple: 0 0 40px hsl(var(--neon-purple) / 0.5), 0 0 100px hsl(var(--neon-purple) / 0.25);
+    --shadow-elevation: 0 30px 80px -20px hsl(230 50% 0% / 0.7);
+    --shadow-card: 0 20px 50px -15px hsl(230 50% 0% / 0.6);
+
+    /* Glass */
+    --glass-bg: hsl(230 20% 10% / 0.55);
+    --glass-border: hsl(210 40% 98% / 0.08);
+
+    /* Motion */
+    --ease-drift: cubic-bezier(0.22, 1, 0.36, 1);
+    --transition-smooth: all 0.4s var(--ease-drift);
+
+    --sidebar-background: 230 20% 5%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 200 100% 55%;
+    --sidebar-primary-foreground: 230 25% 5%;
+    --sidebar-accent: 230 15% 12%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 230 15% 16%;
+    --sidebar-ring: 200 100% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    background: hsl(var(--background));
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: hsl(var(--neon-blue) / 0.3);
+    color: hsl(var(--foreground));
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, hsl(var(--neon-blue) / 0.6), hsl(var(--neon-purple) / 0.6));
+    border-radius: 8px;
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: 'Orbitron', 'Inter', sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+  .text-gradient-brand {
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-gradient-fire {
+    background: var(--gradient-fire);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid var(--glass-border);
+  }
+
+  .glass-strong {
+    background: hsl(230 20% 8% / 0.75);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    border: 1px solid hsl(210 40% 98% / 0.1);
+  }
+
+  .neon-border {
+    position: relative;
+  }
+  .neon-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: var(--gradient-brand);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+  }
+  .neon-border:hover::before {
+    opacity: 1;
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(hsl(var(--neon-blue) / 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--neon-blue) / 0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+
+  .skid-line {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, hsl(var(--foreground) / 0.4), transparent);
+    filter: blur(1px);
+  }
+}
+
+@layer utilities {
+  .bg-hero {
+    background: var(--gradient-hero);
+  }
+  .bg-brand {
+    background: var(--gradient-brand);
+  }
+  .bg-card-grad {
+    background: var(--gradient-card);
+  }
+  .shadow-neon {
+    box-shadow: var(--shadow-neon);
+  }
+  .shadow-neon-purple {
+    box-shadow: var(--shadow-neon-purple);
+  }
+  .shadow-elevation {
+    box-shadow: var(--shadow-elevation);
+  }
+  .shadow-card-soft {
+    box-shadow: var(--shadow-card);
+  }
+  .transition-drift {
+    transition: var(--transition-smooth);
+  }
+}
+
+/* Keyframes */
+@keyframes drift-smoke {
+  0%, 100% { transform: translateX(0) scale(1); opacity: 0.4; }
+  50% { transform: translateX(20px) scale(1.1); opacity: 0.6; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px hsl(var(--neon-blue) / 0.4), 0 0 40px hsl(var(--neon-blue) / 0.2); }
+  50% { box-shadow: 0 0 40px hsl(var(--neon-blue) / 0.7), 0 0 80px hsl(var(--neon-blue) / 0.3); }
+}
+
+@keyframes scan-line {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-drift-smoke { animation: drift-smoke 6s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 2.5s ease-in-out infinite; }
+.animate-float-y { animation: float-y 4s ease-in-out infinite; }
+.animate-marquee { animation: marquee 30s linear infinite; }
